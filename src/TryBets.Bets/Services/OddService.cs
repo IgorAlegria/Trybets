@@ -12,11 +12,9 @@ public class OddService : IOddService
 
     public async Task<object> UpdateOdd(int MatchId, int TeamId, decimal BetValue)
     {
-        var URL = $"https://localhost:5504/odd/{MatchId}/{TeamId}/{BetValue}";
-
         var content = new StringContent(string.Empty, Encoding.UTF8, "application/json");
 
-        var response = await _client.PatchAsync(URL, content);
+        var response = await _client.PatchAsync($"https://localhost:5504/odd/{MatchId}/{TeamId}/{BetValue}", content);
 
         if (response.IsSuccessStatusCode)
         {
